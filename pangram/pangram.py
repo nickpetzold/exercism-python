@@ -1,12 +1,14 @@
-def char_range(c1, c2):
-    """Generates the characters from `c1` to `c2`, inclusive."""
-    for c in range(ord(c1), ord(c2)+1):
-        yield chr(c)
+import string as str
+import re
 
 def is_pangram(sentence):
+    a_to_z = list(str.ascii_lowercase)
     freq_dict = {}
-    for letter in char_range('a', 'z'):
-        freq_dict[letter] = 0
-    for i in list(sentence.replace(" ", "")):
-        freq_dict[i] += 1
+    for x in a_to_z:
+        freq_dict[x] = 0
+    arr = list(re.sub(r'[^a-z]','',sentence.lower()))
+    print(arr)
+    for a in arr:
+        freq_dict[a] += 1
+
     return False if 0 in freq_dict.values() else True
